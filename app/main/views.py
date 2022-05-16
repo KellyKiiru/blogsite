@@ -12,6 +12,6 @@ def index():
 
 @main.route('/about')
 def about():
-    title = "About Myself"
+    title = "Myself"
     return render_template('about.html',title=title)
     
