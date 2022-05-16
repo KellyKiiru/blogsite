@@ -1,6 +1,8 @@
 from . import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from app import *
+from datetime import datetime
 
 class Quote:
     def __init__(self,author,quote):
@@ -16,6 +18,7 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(25), nullable=False)
     pass_secure = db.Column(db.String, nullable=False)
     profile_path = db.Column(db.String, nullable=True)
+    posts = db.relationship('Posts', backref='post_author', lazy='dynamic')
 
     @property
     def password(self):
@@ -30,6 +33,13 @@ class User(UserMixin, db.Model):
 
     def get_id(self):
         return self.user_id
+
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return User.query.get(int(user_id))
+    except:
+        return None
 
 
 class Comment(db.Model):
@@ -47,3 +57,21 @@ class Upvote():
     pass
 class Downvote():
     pass
+
+
+class Posts(db.Model):
+    __tablename__ = 'posts'
+
+    post_id = db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String, nullable=False)
+    created_on = db.Column(db.DateTime, default=datetime.utcnow)
+    content = db.Column(db.String, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
+
+    def __repr__(self):
+        return self.title
+
+    def save_blogpost(self):
+        db.session.add(self)
+       

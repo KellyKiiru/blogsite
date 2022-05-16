@@ -1,1 +1,16 @@
-<h1>heyyoo going well</h1>
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_field %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="w-75">
+        <form method="POST">
+            {{ form.csrf_token() }}
+            {{ render_field(form.email, placeholder='enter your email') }}
+            {{ render_field(form.password, placeholder='enter your password') }}
+            {{ render_field(form.submit, button_size='sm', class="btn-success") }}
+        </form>
+    </div>
+</div>
+{% endblock content %}
