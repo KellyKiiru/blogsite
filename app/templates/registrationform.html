@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_field %}
 
 {% block styles %}
 {{super()}}
@@ -11,15 +12,28 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6 update">
-        <h2 style="text-align: center;">POST NEW PITCH</h2><hr>
-          {{wtf.quick_form(form)}}
+<div class="container" style="background-color:black;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="w-75">
+            <form method="POST">
+                {{ form.csrf_token() }}
+                {{ render_field(form.email, placeholder='Please enter your email') }}
+                {{ render_field(form.first_name, placeholder='first name') }}
+                {{ render_field(form.last_name, placeholder='last name') }}
+                {{ render_field(form.password, placeholder='create a password') }}
+                {{ render_field(form.submit, button_size='md', class="btn-primary") }}
+            </form>
+        </div>
       </div>
-      <div class="col-md-3"></div>
     </div>
   </div>
+</div>
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
 {% endblock %}
 
