@@ -4,7 +4,6 @@ class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY")
     SECRET_KEY='qwerty12345'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/blogsite'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig(Config):
     pass
