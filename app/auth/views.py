@@ -10,6 +10,8 @@ def register():
     '''
     Render registration form
     '''
+    
+    title = "Register"
     registration_form= RegistrationForm()
     
     if request.method == "POST":
@@ -33,4 +35,4 @@ def register():
                 flash("Email already registered. Please login")
         else:
             flash("Please fill all fields with valid data")
-    return render_template('registrationform.html', form=registration_form)
+    return render_template('registrationform.html', form=registration_form, title=title)
