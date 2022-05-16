@@ -1,10 +1,9 @@
-from email.quoprimime import quote
 import urllib.request,json
-from webbrowser import get
+import json
 from app.models import Quote
 
-def request_quote(app):
-    with urllib.request.urlopen('') as url:
+def request_quote():
+    with urllib.request.urlopen('http://quotes.stormconsultancy.co.uk/random.json') as url:
         data = url.read()
         get_json = json.loads(data)
         
