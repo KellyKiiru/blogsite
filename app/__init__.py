@@ -25,12 +25,16 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     
+    '''
+        initialization of flask extensions
+    '''
     #initialize bootstrap
     bootstrap.init_app(app)
     
     #initialize database
     db.init_app(app)
     
+    #initialize csrf
     csrf.init_app(app)   
     
     
