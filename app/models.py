@@ -66,7 +66,7 @@ class Posts(db.Model):
     created_on = db.Column(db.DateTime, default=datetime.utcnow)
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
-    comments = db.relationship('Comments', backref='postblog', lazy='dynamic')
+    comments = db.relationship('Comment', backref='postblog', lazy='dynamic')
 
     def __repr__(self):
         return self.title

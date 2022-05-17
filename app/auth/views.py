@@ -41,7 +41,7 @@ def register():
 
 @auth.route('/login', methods=["GET", "POST"])
 def login():
-    #title = "Login to Acc"
+    title = "Login to Acc"
     
     '''
     Render login form
@@ -55,15 +55,14 @@ def login():
             
             get_user = User.query.filter_by(email=email).first()
             
-            if get_user and User.verify_password(get_user,password):
+            if get_user and User.verify_password(get_user, password):
                 login_user(get_user)
-                flash("Successfully logged in")
+                flash("Successfully logged in",category="primary")
                 return redirect(request.args.get('next') or url_for('main.index'))
             else:
                 flash("Wrong details")
-                
         else:
             flash("Fill in the specified fields")           
     
     
-    return render_template('login.html', form=login_form)
+    return render_template('login.html', form=login_form, title=title)
