@@ -50,16 +50,12 @@ class Comment(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
     comment = db.Column(db.String, nullable=False)
+    posted_on = db.Column(db.DateTime, default=datetime.utcnow)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'))
 
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
-
-class Upvote():
-    pass
-class Downvote():
-    pass
-
 
 class Posts(db.Model):
     __tablename__ = 'posts'
@@ -70,6 +66,7 @@ class Posts(db.Model):
     created_on = db.Column(db.DateTime, default=datetime.utcnow)
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
+    comments = db.relationship('Comments', backref='postblog', lazy='dynamic')
 
     def __repr__(self):
         return self.title
