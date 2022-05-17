@@ -3,6 +3,7 @@ class Config:
     WTF_CSRF_SECRET_KEY="qwerty12345"
     SECRET_KEY = os.environ.get("SECRET_KEY")
     SECRET_KEY='qwerty12345'
+    DATABASE_URL=os.environ.get('DATABASE_URL')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/blogsite'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

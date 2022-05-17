@@ -10,7 +10,7 @@ class Quote:
         self.quote=quote
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'authors'
+    __tablename__ = "authors"
 
     user_id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), nullable=False)
@@ -33,6 +33,8 @@ class User(UserMixin, db.Model):
 
     def get_id(self):
         return self.user_id
+    
+    
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -43,7 +45,7 @@ def load_user(user_id):
 
 
 class Comment(db.Model):
-    __tablename__ = 'comments'
+    __tablename__ = "comments"
 
     comment_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
@@ -74,4 +76,4 @@ class Posts(db.Model):
 
     def save_blogpost(self):
         db.session.add(self)
-       
+        db.session.commit()

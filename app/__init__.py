@@ -33,6 +33,7 @@ def create_app(config_name):
     
     #initialize database
     db.init_app(app)
+    db.create_all(app=app)
     
     #initialize csrf
     csrf.init_app(app)  
