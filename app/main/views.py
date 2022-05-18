@@ -40,5 +40,3 @@ def add_new_blog(user_id):
         return redirect(url_for('main.index'))
 
     return render_template('add_new_blog.html', form=form)
-
-

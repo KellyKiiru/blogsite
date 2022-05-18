@@ -1,1 +1,16 @@
-<h1>Hello World</h1>
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_field, render_hidden_errors %}
+
+{% block title %} Add {% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="mt-4">
+    {{ form.csrf_token() }}
+    {{ render_hidden_errors(form) }}
+    {{ render_field(form.title, placeholder='post title') }}
+    {{ render_field(form.author, placeholder='post author, 30 chars max') }}
+    {{ render_field(form.cover_image) }}
+    {{ render_field(form.content, placeholder='write your blog post here') }}
+    {{ render_field(form.submit, button_size='sm', class="btn-success") }}
+</form>
+{% endblock content %}
