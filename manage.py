@@ -19,4 +19,4 @@ def make_shell_context():
     return dict(db=db, user=User, bp=Posts, cm=Comment)
 
 if __name__ == '__main__':
-    app.run()
+    manager.run()
