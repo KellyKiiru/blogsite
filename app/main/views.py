@@ -18,13 +18,6 @@ def index():
     
     return render_template('index.html', quote=quote, title=title, posts=posts)
 
-@main.route('/indeks')
-def indeks():
-    posts = Posts.query.order_by(desc(Posts.created_on))
-
-    quote = request_quote()
-    return render_template('indeks.html', posts=posts, quote=quote)
-
 @main.route('/about')
 def about():
     title = "Myself"
