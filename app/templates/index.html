@@ -35,22 +35,37 @@
             <hr class="my-4" />
         </div>
     </div>
-</div><div class="row">
-    
+</div>
+<div class="row">
+
     <div class="col-md-2"><img style="width: 100%;" src="" alt=""></div>
+    {% for post in posts %}
     <div class=" col-md-8 card" style="width:50%;">
-        <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--wut2Nxl4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gywsfv61f8ugmecowaad.jpg" class="card-img-top" alt="vscode ide">
+        <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--wut2Nxl4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gywsfv61f8ugmecowaad.jpg"
+            class="card-img-top" alt="vscode ide">
         <div class="card-body">
             <h5 class="card-title">Python 101 : The Ultimate Python Tutorial For Beginners</h5>
             <p class="card-text">
                 If there is one thing every master (who by definition has put in at least 10,000 hours into their craft)
-                will tell any beginner is: "Interested in something but are unsure that you're capable? Try to shush that
+                will tell any beginner is: "Interested in something but are unsure that you're capable? Try to shush
+                that
                 and just start. It will all fall in place eventually"
             </p>
             <a href="https://dev.to/kellykiiru/python-101-the-ultimate-python-tutorial-for-beginners-54j1"
                 class="btn btn-primary">Read More</a>
+            
+                {% if current_user.is_authenticated %}
+            <li class="tag__item bg-danger"><a
+                    href="{{ url_for('main.delete_post', post_id=blogpost.post_id) }}"
+                    class="text-decoration-none text-light fs-6">Delete</a>
+            <li class="tag__item bg-primary"><a
+                    href="{{ url_for('main.update_post', post_id=blogpost.post_id) }}"
+                    class="text-decoration-none text-light fs-6">Update</a>
+                {% endif %}
         </div>
     </div>
+
+    {% endfor %}
     <div class="col-md-2"><img style="width: 100%;" src="" alt=""></div>
 </div>
 <!-- Footer-->
