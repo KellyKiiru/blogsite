@@ -66,11 +66,11 @@ class Posts(db.Model):
     created_on = db.Column(db.DateTime, default=datetime.utcnow)
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
-    comments = db.relationship('Comment', backref='postblog', lazy='dynamic')
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):
         return self.title
 
-    def save_blogpost(self):
+    def save_posts(self):
         db.session.add(self)
         db.session.commit()

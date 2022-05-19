@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_field, render_hidden_errors %}
+
+{% block title %} Update {% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="mt-4">
+    {{ form.csrf_token() }}
+    {{ render_hidden_errors(form) }}
+    {{ render_field(form.title) }}
+    {{ render_field(form.author) }}
+    {{ render_field(form.content) }}
+    {{ render_field(form.submit, button_size='sm', class="btn-primary") }}
+</form>
+{% endblock content %}
