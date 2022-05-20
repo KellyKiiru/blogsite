@@ -32,7 +32,6 @@ def create_app(config_name):
     
     #initialize database
     db.init_app(app)
-    db.create_all(app=app)
     #moment.init_app(app)
     
     #initialize logins
